@@ -16,15 +16,17 @@ While it works, the menu bar shows progress. When a file finishes you get a noti
 ## Requirements
 
 - macOS 15 or later on Apple silicon
-- ffmpeg: `brew install ffmpeg`
 - Xcode or the Command Line Tools (Swift 6)
+- ffmpeg, which `./build.sh install` sets up for you
 
 ## Build and install
 
 ```sh
 ./build.sh           # builds build/Video Compressor.app
-./build.sh install   # also copies it to /Applications and launches it
+./build.sh install   # also installs ffmpeg if needed, copies the app to /Applications and launches it
 ```
+
+If ffmpeg isn't in `/opt/homebrew/bin` or `/usr/local/bin`, `install` runs `brew install ffmpeg`. If Homebrew isn't installed either, it asks before installing it, since that needs your admin password.
 
 The app is ad-hoc signed, so macOS asks once for notification permission and, if your videos live in Desktop, Documents or Downloads, for access to that folder. Rebuilding changes the signature, so the folder prompts can come back after a rebuild.
 
